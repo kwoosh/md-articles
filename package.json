@@ -12,8 +12,11 @@
     "test": "npm run unit"
   },
   "dependencies": {
+    "firebase": "^4.3.0",
+    "marked": "^0.3.6",
     "vue": "^2.3.3",
     "vue-router": "^2.6.0",
+    "vuefire": "^1.4.3",
     "vuex": "^2.3.1"
   },
   "devDependencies": {
