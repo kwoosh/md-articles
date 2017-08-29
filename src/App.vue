@@ -1,15 +1,23 @@
 <template lang='pug'>
-  div#app {{ msg }}
+  div#app
+    alert
 </template>
 <script>
 import Vue from 'vue'
 import Component from 'vue-class-component'
+import Alert from '@/components/Alert'
 
-@Component({})
+@Component({
+  components: {
+    Alert
+  }
+})
 
-export default class App extends Vue {
+class App extends Vue {
   msg = 'app'
 }
+
+export default App
 </script>
 <style lang='stylus'>
 

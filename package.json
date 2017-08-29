@@ -1,7 +1,7 @@
 {
   "name": "md-articles",
-  "version": "1.0.0",
-  "description": "Markdown note editor",
+  "version": "0.0.1",
+  "description": "Markdown article editor (CMS)",
   "author": "kwoosh <tobirawork@gmail.com>",
   "private": true,
   "scripts": {
@@ -12,6 +12,8 @@
     "test": "npm run unit"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-vue": "^1.0.0-beta.4",
     "firebase": "^4.3.0",
     "marked": "^0.3.6",
     "vue": "^2.3.3",
