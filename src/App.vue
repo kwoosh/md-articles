@@ -1,15 +1,20 @@
 <template lang='pug'>
   div#app
-    alert
+    nav-bar
+    main
+      router-view
+    
 </template>
 <script>
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import Alert from '@/components/Alert'
+import NavBar from '@/components/NavBar'
 
 @Component({
   components: {
-    Alert
+    Alert,
+    NavBar
   }
 })
 
