@@ -8,12 +8,10 @@
 <script>
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import Alert from '@/components/Alert'
 import NavBar from '@/components/NavBar'
 
 @Component({
   components: {
-    Alert,
     NavBar
   }
 })
