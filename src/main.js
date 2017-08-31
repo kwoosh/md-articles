@@ -2,11 +2,9 @@ import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import App from './App'
 import router from './router'
-import store from './store'
-import { mark } from './filters'
+import { store } from './store'
 
 Vue.use(BootstrapVue)
-Vue.filter('md', mark)
 
 Vue.config.productionTip = false
 

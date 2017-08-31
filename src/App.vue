@@ -17,7 +17,7 @@ import NavBar from '@/components/NavBar'
 })
 
 class App extends Vue {
-  msg = 'app'
+  
 }
 
 export default App
