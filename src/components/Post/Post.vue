@@ -3,8 +3,13 @@
     b-card(header-tag='header'
       footer='Card Footer'
       footer-tag='footer')
-      div(slot='header') 
-
+      div(slot='header' class='flex-el') 
+        div
+          b-button(variant='link' to='/users') {{ post.author }}
+          | {{ post.dateOfPub }}
+        div
+          span(v-for='(keyword, i) in post.keywords' :key='i') 
+            b-button(variant='link' :to='"/filtered/" + keyword') {{ keyword }}
       div( v-html='postContent')
       
 </template>
@@ -31,6 +36,14 @@ class Post extends Vue {
 export default Post
 </script>
 
-<style lang='stylus'>
+<style lang='stylus' scoped>
+  .flex-el {
+    display: flex
+    justify-content: space-between
+    align-items: center
+  }
 
+  span {
+    margin: 0 7px
+  }
 </style>
