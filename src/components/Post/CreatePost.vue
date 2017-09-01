@@ -1,21 +1,28 @@
 <template lang='pug'>
   div 
-    b-card(title='Новая статья' class='post-card')
+    b-card(title='Публикация, претендующая на приглашение' class='post-card')
+      b-form( @submit='onCreatePost')
+        h5 Заголовок:
+        b-form-input(type="text"
+          placeholder="Введите заголовок"
+          v-model='title')
+        b-form-text Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.
 
-      h5 {{ dateOfPub }}
+        h5 Метки:
+        b-form-input(type="text"
+          placeholder="Введите хотябы 1 метку"
+          v-model.trim='kw'
+          size='sm')
+        b-form-text Вводите метки через запятые.
 
-      h5 Заголовок:
-      b-form-input(type="text"
-        placeholder="Введите заголовок"
-        v-model='title')
-      b-form-text Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.
+        h5 Текст:
+        b-tabs( ref='tabs' pills)
+          b-tab(title='Редактор')
+            b-form-textarea(:rows='50' v-model='content' class='margin')
+          b-tab(title='Просмотр')
+            div( v-html='cont')
 
-      h5 Текст:
-      b-tabs( ref='tabs' card)
-        b-tab(title='Редактор')
-          b-form-textarea(:rows='50' v-model='content')
-        b-tab(title='Просмотр')
-          div( v-html='cont')
+        b-button(type='submit' variant='primary') Опубликовать
       
 </template>
 <script>
@@ -29,11 +36,29 @@ moment.locale('ru')
 @Component({
   components: {},
 })
-
+//TODO: сделай еще валидацию формочек
 class CreatePost extends Vue {
   title = ''
   content = ''
-  keywords = ''
+  kw = ''
+
+  onCreatePost(e) {
+    const postData = {
+      id: 3,
+      title: this.title,
+      content: this.content,
+      dateOfPub: this.dateOfPub,
+      author: 'Admin',
+      keywords: this.keywords
+    }
+
+    this.$store.dispatch('createPost', postData)
+    this.$router.push('/posts')
+  }
+
+  get keywords() {
+    return this.kw.split(',')
+  }
 
   get cont() {
     return marked(this.content)
@@ -55,5 +80,9 @@ export default CreatePost
 <style lang="stylus" scoped>
   h5 {
     margin-top: 40px
+  }
+
+  .margin {
+    margin-top: 20px
   }
 </style>
