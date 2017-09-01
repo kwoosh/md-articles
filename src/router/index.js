@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Posts from '@/components/Post/Posts'
 import Post from '@/components/Post/Post'
+import CreatePost from '@/components/Post/CreatePost'
 
 Vue.use(Router)
 
@@ -24,7 +25,12 @@ export default new Router({
       name: 'Single post',
       props: true,
       component: Post
-    }
+    },
+    {
+      path: '/new',
+      name: 'New post',
+      component: CreatePost
+    },
   ],
   mode: 'history'
 })

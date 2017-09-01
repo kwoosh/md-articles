@@ -5,7 +5,8 @@
       :title='post.title'
       header-tag='header'
       footer-tag='footer'
-      class='card')
+      class='post-card')
+      div(v-html='sliceOfPost[i]' class='slice-article')
       div(slot='header') 
         b-button(variant='link' to='/users') {{ post.author }}
         | {{ post.dateOfPub }}
@@ -18,6 +19,7 @@
 <script>
 import Vue from 'vue'
 import Component from 'vue-class-component'
+import marked from 'marked'
 
 @Component({
   components: {},
@@ -27,12 +29,15 @@ class Posts extends Vue {
   get posts() {
     return this.$store.getters.allPosts
   }
+  get sliceOfPost() {
+    return this.$store.getters.slicesOfPosts.map(slice => marked(slice))
+  }
 }
 
 export default Posts
 </script>
 <style lang='stylus' scoped>
-  .card {
-    margin: 30px
+  .slice-article {
+    font-size: 1.2em
   }
 </style>

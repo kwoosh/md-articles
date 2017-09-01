@@ -23,6 +23,8 @@ class App extends Vue {
 export default App
 </script>
 <style lang='stylus'>
-
+  .post-card {
+    margin: 30px
+  }
 </style>
 

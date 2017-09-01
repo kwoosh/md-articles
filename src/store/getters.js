@@ -4,5 +4,8 @@ export default {
   },
   allPosts(state) {
     return state.posts
+  },
+  slicesOfPosts(state) {
+    return state.posts.map(post => post.content.substr(0, 550) + '...')
   }
 }

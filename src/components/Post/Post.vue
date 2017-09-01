@@ -2,7 +2,8 @@
   div 
     b-card(header-tag='header'
       footer='Card Footer'
-      footer-tag='footer')
+      footer-tag='footer'
+      class='post-card')
       div(slot='header' class='flex-el') 
         div
           b-button(variant='link' to='/users') {{ post.author }}
