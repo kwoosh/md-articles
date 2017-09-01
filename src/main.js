@@ -5,7 +5,6 @@ import router from './router'
 import { store } from './store'
 
 Vue.use(BootstrapVue)
-
 Vue.config.productionTip = false
 
 new Vue({

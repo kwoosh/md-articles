@@ -10,9 +10,7 @@
         b-nav-item(to='/users') Пользователи
 
       b-nav(is-nav-bar class='ml-auto')
-        b-nav-form
-          b-form-input(size='sm' class='mr-sm-2' type='text' placeholder='Найти статью')
-          b-button(size='sm' class='my-2 my-sm-0' type='submit') Поиск
+        b-button(variant='outline-warning' to='/new') Написать
     
 </template>
 <script>
