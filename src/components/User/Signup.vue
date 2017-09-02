@@ -8,7 +8,7 @@
         b-form-input(id='nameInput'
           type='text' 
           v-model.trim='form.name' 
-          required)
+          required) 
 
       b-form-group(id='email'
         label='Ваш email:' 

@@ -1,5 +1,5 @@
 <template lang='pug'>
-  b-navbar(toggleable='md' type='dark' variant='info')
+  b-navbar(toggleable='md' type='dark' class='blue')
 
     b-nav-toggle(target='nav_collapse')
     
@@ -10,9 +10,10 @@
         b-nav-item(to='/users') Пользователи
 
       b-nav(is-nav-bar class='ml-auto')
-        b-button(variant='outline-warning' to='/new') Написать
-        b-button(variant='outline-success' to='/signup') Регистрация
-        b-button(variant='outline-success' to='/signin') Войти
+        b-button.b(variant='outline-warning' to='/new' v-if='user') Написать
+        b-button.b(variant='outline-success' v-if='user' @click='onSignout') Выйти
+        b-button.b(variant='outline-success' to='/signup' v-if='!user') Регистрация
+        b-button.b(variant='outline-success' to='/signin' v-if='!user') Войти
     
 </template>
 <script>
@@ -24,11 +25,24 @@ import { Component, Vue } from 'vue-property-decorator'
 })
 
 class NavBar extends Vue {
-  
+
+  get user() {
+    return this.$store.getters.user
+  }
+
+  onSignout(e) {
+    this.$store.dispatch('signOut', null)
+  }
 }
 
 export default NavBar
 </script>
-<style lang='stylus'>
+<style lang='stylus' scoped>
+  .b {
+    margin: 0 10px    
+  }
 
+  .blue {
+    background-color: #2FA7E3
+  }
 </style>

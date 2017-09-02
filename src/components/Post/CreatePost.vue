@@ -1,6 +1,6 @@
 <template lang='pug'>
   b-card(title='Публикация, претендующая на приглашение' class='post-card')
-    b-form(@submit='onCreatePost')
+    b-form(@submit.prevent='onCreatePost')
       h5 Заголовок:
       b-form-input(type="text"
         placeholder="Введите заголовок"
@@ -42,11 +42,10 @@ class CreatePost extends Vue {
 
   onCreatePost(e) {
     const postData = {
-      id: 3,
+      id: this.$store.state.posts.length + 1,
       title: this.title,
       content: this.content,
       dateOfPub: this.dateOfPub,
-      author: 'Admin',
       keywords: this.keywords
     }
 
@@ -69,7 +68,7 @@ class CreatePost extends Vue {
     const time = arr[2]
     const date = arr[1]
 
-    return `${date} | ${time} ${day}`
+    return `${date} в ${time}`
   }
 }
 

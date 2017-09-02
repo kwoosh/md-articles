@@ -11,27 +11,38 @@ export const store = new Vuex.Store({
   getters,
   mutations: {
     CREATE_POST(state, payload) {
+      payload.author = state.user.name
       state.posts.push(payload)
+      state.user.postsId.push(payload.id)
     },
     SIGN_USER_UP(state, payload) {
       state.users.push(payload)
     },
+    SIGN_USER_OUT(state, payload) {
+      state.user = payload
+    },
     SIGN_USER_IN(state, payload) {
       const u = state.users.find(user => (user.name == payload.name || user.email == payload.email) && user.password == payload.password )
-      state.user = {
-        id: u.id,
-        name: u.name,
-        dateOfReg: u.dateOfReg,
-        email: u.email,
-        postsId: u.postId,
-        password: u.password
+      if(u) {
+        state.user = {
+          id: u.id,
+          name: u.name,
+          dateOfReg: u.dateOfReg,
+          email: u.email,
+          postsId: u.postsId,
+          password: u.password
+        }
+
+        state.authMsg = ''
+      } else {
+        state.authMsg = 'Не правильный пароль или логин.'
       }
     }
   },
   actions: {
     createPost({commit}, payload) {
       const post = {
-        id: 3,
+        id: payload.id,
         title: payload.title,
         content: payload.content,
         dateOfPub: payload.dateOfPub,
@@ -62,6 +73,8 @@ export const store = new Vuex.Store({
 
       commit('SIGN_USER_IN', user)
     },
-
+    signOut({commit}, payload) {
+      commit('SIGN_USER_OUT', payload)
+    }
   }
 })

@@ -24,8 +24,9 @@ export default {
       dateOfReg: new Date(),
       email: 'tobirawork@gmail.com',
       postsId: [1, 2],
-      password: 'admin123'
+      password: 'a'
     }
   ],
-  user: null
+  user: null,
+  authMsg: ''
 }

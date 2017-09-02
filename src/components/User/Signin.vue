@@ -12,11 +12,12 @@
         v-model.trim='form.password'
         placeholder='Пароль' 
         required)
+      div {{ this.msg }}
       
       b-button(type='submit' variant='success') Войти
 </template>
 <script>
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 
 @Component({
   components: {}
@@ -29,9 +30,9 @@ class Signin extends Vue {
     email: null
   }
 
-  onSignin(e) {
-    alert('lol')
+  msg = this.$store.getters.authMsg
 
+  onSignin(e) {
     const user = {
       password: this.form.password,
       email: this.form.email,
@@ -39,7 +40,8 @@ class Signin extends Vue {
     }
 
     this.$store.dispatch('signIn', user)
-    this.$router.push('/')
+
+    this.msg = 'Что-то не правильно ввел...'
   }
 
   nameOrEmail() {

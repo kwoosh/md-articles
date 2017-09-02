@@ -10,5 +10,8 @@ export default {
   },
   user(state) {
     return state.user
+  },
+  authMsg(state) {
+    return state.authMsg
   }
 }
