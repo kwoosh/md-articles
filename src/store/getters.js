@@ -7,5 +7,8 @@ export default {
   },
   slicesOfPosts(state) {
     return state.posts.map(post => post.content.substr(0, 550) + '...')
+  },
+  user(state) {
+    return state.user
   }
 }

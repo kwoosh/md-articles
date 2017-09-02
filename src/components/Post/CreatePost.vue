@@ -1,33 +1,31 @@
 <template lang='pug'>
-  div 
-    b-card(title='Публикация, претендующая на приглашение' class='post-card')
-      b-form( @submit='onCreatePost')
-        h5 Заголовок:
-        b-form-input(type="text"
-          placeholder="Введите заголовок"
-          v-model='title')
-        b-form-text Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.
+  b-card(title='Публикация, претендующая на приглашение' class='post-card')
+    b-form(@submit='onCreatePost')
+      h5 Заголовок:
+      b-form-input(type="text"
+        placeholder="Введите заголовок"
+        v-model='title')
+      b-form-text Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.
 
-        h5 Метки:
-        b-form-input(type="text"
-          placeholder="Введите хотябы 1 метку"
-          v-model.trim='kw'
-          size='sm')
-        b-form-text Вводите метки через запятые.
+      h5 Метки:
+      b-form-input(type="text"
+        placeholder="Введите хотябы 1 метку"
+        v-model.trim='kw'
+        size='sm')
+      b-form-text Вводите метки через запятые.
 
-        h5 Текст:
-        b-tabs( ref='tabs' pills)
-          b-tab(title='Редактор')
-            b-form-textarea(:rows='50' v-model='content' class='margin')
-          b-tab(title='Просмотр')
-            div( v-html='cont')
+      h5 Текст:
+      b-tabs( ref='tabs' pills)
+        b-tab(title='Редактор')
+          b-form-textarea(:rows='50' v-model='content' class='margin')
+        b-tab(title='Просмотр')
+          div( v-html='cont')
 
-        b-button(type='submit' variant='primary') Опубликовать
+      b-button(type='submit' variant='primary') Опубликовать
       
 </template>
 <script>
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import { Component, Vue } from 'vue-property-decorator'
 import marked from 'marked'
 import moment from 'moment'
 

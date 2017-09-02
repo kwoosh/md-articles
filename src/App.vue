@@ -6,8 +6,7 @@
     
 </template>
 <script>
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import { Component, Vue } from 'vue-property-decorator'
 import NavBar from '@/components/NavBar'
 
 @Component({
@@ -15,7 +14,7 @@ import NavBar from '@/components/NavBar'
     NavBar
   }
 })
-
+//TODO: зделай что-то с задним фоном, и стилизуй лучше все...
 class App extends Vue {
   
 }

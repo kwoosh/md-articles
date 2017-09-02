@@ -11,15 +11,16 @@
 
       b-nav(is-nav-bar class='ml-auto')
         b-button(variant='outline-warning' to='/new') Написать
+        b-button(variant='outline-success' to='/signup') Регистрация
+        b-button(variant='outline-success' to='/signin') Войти
     
 </template>
 <script>
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import { Component, Vue } from 'vue-property-decorator'
+
 
 @Component({
-  components: {
-  }
+  components: {}
 })
 
 class NavBar extends Vue {

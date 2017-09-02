@@ -23,7 +23,9 @@ export default {
       name: 'Admin',
       dateOfReg: new Date(),
       email: 'tobirawork@gmail.com',
-      postsId: [1]
+      postsId: [1, 2],
+      password: 'admin123'
     }
-  ]
+  ],
+  user: null
 }

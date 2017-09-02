@@ -5,6 +5,8 @@ import Home from '@/components/Home'
 import Posts from '@/components/Post/Posts'
 import Post from '@/components/Post/Post'
 import CreatePost from '@/components/Post/CreatePost'
+import Signup from '@/components/User/Signup'
+import Signin from '@/components/User/Signin'
 
 Vue.use(Router)
 
@@ -31,6 +33,16 @@ export default new Router({
       name: 'New post',
       component: CreatePost
     },
+    {
+      path: '/signup',
+      name: 'User sign up',
+      component: Signup
+    },
+    {
+      path: '/signin',
+      name: 'User sign in',
+      component: Signin
+    }
   ],
   mode: 'history'
 })
