@@ -36,10 +36,11 @@ moment.locale('ru')
 })
 //TODO: сделай еще валидацию формочек
 class CreatePost extends Vue {
+  //data
   title = ''
   content = ''
   kw = ''
-
+  //methods
   onCreatePost(e) {
     const postData = {
       id: this.$store.state.posts.length + 1,
@@ -52,15 +53,13 @@ class CreatePost extends Vue {
     this.$store.dispatch('createPost', postData)
     this.$router.push('/posts')
   }
-
+  // computed
   get keywords() {
     return this.kw.split(',')
   }
-
   get cont() {
     return marked(this.content)
   }
-
   get dateOfPub() {
     const arr = moment().format('LLLL').split(',')
 

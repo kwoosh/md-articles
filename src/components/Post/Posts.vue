@@ -25,6 +25,7 @@ import marked from 'marked'
 })
 
 class Posts extends Vue {
+  // computed
   get posts() {
     return this.$store.getters.allPosts
   }

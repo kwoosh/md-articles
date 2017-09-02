@@ -51,13 +51,14 @@ moment.locale('ru')
   components: {}
 })
 class Signup extends Vue {
+  //data
   form = {
     email: '',
     name: '',
     password: '',
     confirmPassword: ''
   }
-
+  // computed
   get passwordMatch() {
     if (this.form.password === this.form.confirmPassword) {
       return 'Отлично, пароли совпадают'
@@ -65,7 +66,6 @@ class Signup extends Vue {
       return 'Пароли не совпадают'
     }
   }
-
   get passwordMsg() {
     if (this.form.password.length < 6) {
       return 'Пароль должен содержать не меньше 6 символов'
@@ -73,11 +73,10 @@ class Signup extends Vue {
       return 'Надежный пароль ;)'
     }
   }
-
   get user() {
     return this.$store.getters.user
   }
-
+  //methods
   onSignup(e) {
     const user = { 
       email: this.form.email,

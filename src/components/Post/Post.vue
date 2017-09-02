@@ -25,6 +25,7 @@ import marked from 'marked'
 })
 
 class Post extends Vue {
+  // computed
   get postContent() {
     return marked(this.post.content)
   }

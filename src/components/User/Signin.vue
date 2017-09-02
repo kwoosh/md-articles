@@ -23,15 +23,15 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
   components: {}
 })
 class Signin extends Vue {
+  //data
   form = {
     input: '',
     password: '',
     name: null,
     email: null
   }
-
   msg = this.$store.getters.authMsg
-
+  //methods
   onSignin(e) {
     const user = {
       password: this.form.password,
@@ -43,7 +43,6 @@ class Signin extends Vue {
 
     this.msg = 'Что-то не правильно ввел...'
   }
-
   nameOrEmail() {
     const input = this.form.input
 

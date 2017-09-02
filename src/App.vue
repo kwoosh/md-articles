@@ -14,13 +14,14 @@ import NavBar from '@/components/NavBar'
     NavBar
   }
 })
-//TODO: зделай что-то с задним фоном, и стилизуй лучше все...
+//TODO: сделай что-то с задним фоном, и стилизуй лучше все...
 class App extends Vue {
+  // computed
   get userAuthed() {
     const u = this.$store.getters.user
     return (u !== null && u !== undefined)
   }
-  //если юрез вошол - редирект на /
+  //      если юрез вошол - редирект на /
   @Watch('userAuthed')
   ifUser(val) {
     val ? this.$router.push('/') : false

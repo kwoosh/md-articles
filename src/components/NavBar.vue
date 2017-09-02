@@ -25,11 +25,11 @@ import { Component, Vue } from 'vue-property-decorator'
 })
 
 class NavBar extends Vue {
-
+  // computed
   get user() {
     return this.$store.getters.user
   }
-
+  //methods
   onSignout(e) {
     this.$store.dispatch('signOut', null)
   }
