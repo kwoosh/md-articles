@@ -1,10 +1,10 @@
 <template lang='pug'>
-  div 
+  b-container
     b-card(header-tag='header'
-      class='card'
-      bg-variant='dark')
+      bg-variant='info'
+      class='cd')
       div(slot='header' class='flex-el') 
-        div(class='')
+        div
           b-button(variant='link' to='/users' class='link') {{ post.author }}
           | {{ post.dateOfPub }}
         div
@@ -19,12 +19,14 @@ import { Component, Vue } from 'vue-property-decorator'
 import marked from 'marked'
 
 @Component({
-  components: {},
-  props: ['id']
+  components: {}
 })
 
 class Post extends Vue {
   // computed
+  get id() {
+    return this.$route.params.id
+  }
   get postContent() {
     return marked(this.post.content)
   }
@@ -49,10 +51,5 @@ export default Post
 
   span {
     margin: 0 7px
-  }
-
-  .card {
-    margin: 30px 40px
-    color: #fff
   }
 </style>

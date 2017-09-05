@@ -1,5 +1,5 @@
 <template lang='pug'>
-  div
+  b-container
     pre-loader(v-if='isLoading')
     b-card(v-if='!isLoading'
       v-for='(post, i) in posts' 
@@ -7,8 +7,7 @@
       :title='post.title'
       header-tag='header'
       footer-tag='footer'
-      class='card'
-      bg-variant='dark')
+      class='cd')
       div(v-html='sliceOfPost[i]' class='slice-article')
       div(slot='header') 
         b-button(variant='link' to='/users' class='link') {{ post.author }}
@@ -45,11 +44,6 @@ export default Posts
 <style lang='stylus' scoped>
   .link {
     color: #FFC107
-  }
-
-  .card {
-    margin: 30px 40px
-    color: #fff
   }
 
   .slice-article {

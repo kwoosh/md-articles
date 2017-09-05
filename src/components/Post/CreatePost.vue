@@ -1,31 +1,39 @@
 <template lang='pug'>
-  b-card(title='Публикация, претендующая на приглашение' class='post-card')
-    b-form(@submit.prevent='onCreatePost')
-      h5 Заголовок:
-      b-form-input(type="text"
-        placeholder="Введите заголовок"
-        v-model='title')
-      b-form-text Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.
+  b-container
+    b-card(title='Удивите нас вашим творением!' 
+      class='cd cd-inner')
+      b-form(@submit.prevent='onCreatePost')
+        h5 Заголовок:
+        b-form-input(type="text"
+          placeholder="Введите заголовок"
+          v-model='title'
+          class='inp-bg')
+        b-form-text Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.
 
-      h5 Метки:
-      b-form-input(type="text"
-        placeholder="Введите хотябы 1 метку"
-        v-model.trim='kw'
-        size='sm')
-      b-form-text Вводите метки через запятые.
+        h5 Метки:
+        b-form-input(type="text"
+          placeholder="Введите хотябы 1 метку"
+          v-model.trim='kw'
+          size='sm'
+          class='inp-bg')
+        b-form-text Вводите метки через запятые.
 
-      h5 Текст:
-      b-tabs( ref='tabs' pills)
-        b-tab(title='Редактор')
-          b-form-textarea(:rows='50' v-model='content' class='margin')
-        b-tab(title='Просмотр')
-          div( v-html='cont')
+        h5 Текст:
+        b-tabs( ref='tabs' pills)
+          b-tab(title='Редактор')
+            b-form-textarea(:rows='30' 
+              v-model='content' 
+              class='margin inp-bg')
+          b-tab(title='Просмотр')
+            div( v-html='cont')
 
-      b-button(type='submit' variant='primary') Опубликовать
+        b-button(type='submit' 
+          variant='primary'
+          class='mg-btn') Опубликовать
       
 </template>
 <script>
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import marked from 'marked'
 import moment from 'moment'
 
@@ -34,7 +42,6 @@ moment.locale('ru')
 @Component({
   components: {},
 })
-//TODO: сделай еще валидацию формочек
 class CreatePost extends Vue {
   //data
   title = ''
@@ -50,9 +57,20 @@ class CreatePost extends Vue {
     }
 
     this.$store.dispatch('createPost', postData)
+    this.$store.dispatch('loadPosts')
     this.$router.push('/')
   }
+  //не корректно(
+  @Watch('user')
+  ifUser(val) {
+    val ? this.$router.push('/signin') : false
+  }
+
   // computed
+  get userAuthed() {
+    const u = this.$store.getters.user
+    return (u !== null && u !== undefined)
+  }
   get user() {
     return this.$store.getters.user
   }
@@ -76,6 +94,16 @@ class CreatePost extends Vue {
 export default CreatePost
 </script>
 <style lang="stylus" scoped>
+
+  .mg-btn {
+    margin-top: 20px
+    margin-bottom: -20px
+  }
+
+  .cd-inner {
+    padding: 25px
+  }
+
   h5 {
     margin-top: 40px
   }

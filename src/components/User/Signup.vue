@@ -1,37 +1,41 @@
 <template lang='pug'>
-  b-card(title='Регистрация' class='cont')
-    b-form(@submit='onSignup')
+  b-container
+    b-card(title='Регистрация' class='cd')
+      b-form(@submit='onSignup')
 
-      b-form-group(id='email'
-        label='Ваш email:' 
-        label-for='emailInput'
-        description='Ваша почта будет использоваться только для входа.')
-        b-form-input(id='emailInput'
-          type='email' 
-          v-model.trim='form.email' 
-          required)
+        b-form-group(id='email'
+          label='Ваш email:' 
+          label-for='emailInput'
+          description='Ваша почта будет использоваться только для входа.')
+          b-form-input(id='emailInput'
+            type='email' 
+            v-model.trim='form.email' 
+            required
+            class='inp-bg')
 
-      b-form-group(id='password'
-        label='Придумайте пароль:' 
-        label-for='passwordInput'
-        :description='passwordMsg'
-        title='lol')
-        b-form-input(id='passwordInput'
-          type='password' 
-          v-model.trim='form.password' 
-          required)
-        b-form-feedback Введите не меньше 6 символов
-      
-      b-form-group(id='confirmPassword'
-        label='Введите пароль повторно:' 
-        label-for='confirmPasswordInput'
-        :description='passwordMatch')
-        b-form-input(id='confirmPasswordInput'
-          type='password' 
-          v-model.trim='form.confirmPassword' 
-          required)
-      
-      b-button(type='submit' variant='success') Зарегестрироваться
+        b-form-group(id='password'
+          label='Придумайте пароль:' 
+          label-for='passwordInput'
+          :description='passwordMsg'
+          title='lol')
+          b-form-input(id='passwordInput'
+            type='password' 
+            v-model.trim='form.password' 
+            required
+            class='inp-bg')
+          b-form-feedback Введите не меньше 6 символов
+        
+        b-form-group(id='confirmPassword'
+          label='Введите пароль повторно:' 
+          label-for='confirmPasswordInput'
+          :description='passwordMatch')
+          b-form-input(id='confirmPasswordInput'
+            type='password' 
+            v-model.trim='form.confirmPassword' 
+            required
+            class='inp-bg')
+        
+        b-button(type='submit' variant='success') Зарегестрироваться
 </template>
 <script>
 import { Component, Vue, Watch } from 'vue-property-decorator'
@@ -83,7 +87,5 @@ class Signup extends Vue {
 export default Signup
 </script>
 <style lang='stylus' scoped>
-  .cont {
-    margin: 30px 200px
-  }
+
 </style>

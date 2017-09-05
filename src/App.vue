@@ -14,7 +14,6 @@ import NavBar from '@/components/NavBar'
     NavBar
   }
 })
-//TODO: сделай что-то с задним фоном, и стилизуй лучше все...
 class App extends Vue {
   // computed
   get userAuthed() {
@@ -31,12 +30,6 @@ class App extends Vue {
 export default App
 </script>
 <style lang='stylus'>
-  body {
-    background: #31D7E1
-  }
-
-  $_cyan = #C1F4FE
-  $_dark_main = #2B2E3B
-  $_dark_header = #2F3241
+  @import "./assets/helpers.styl"
 </style>
 
