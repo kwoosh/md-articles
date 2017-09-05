@@ -1,38 +1,79 @@
+import firebase from 'firebase'
+
 export default {
-  createPost({commit}, payload) {
+  loadPosts({ commit }) {
+    commit('SET_LOADING', true)
+
+    firebase.database().ref('articles').once('value')
+      .then(data => {
+        const posts = []
+        const obj = data.val()
+
+        for (let key in obj) {
+          posts.push({
+            id: key,
+            title: obj[key].title,
+            content: obj[key].content,
+            dateOfPub: obj[key].dateOfPub,
+            author: obj[key].author,
+            keywords: obj[key].keywords
+          })
+        }
+
+        commit('SET_LOADED_POSTS', posts)
+        commit('SET_LOADING', false)
+      }).catch(err => {
+        commit('SET_LOADING', false)
+        console.log(err)
+      })
+  },
+  createPost({ commit, getters }, payload) {
     const post = {
-      id: payload.id,
       title: payload.title,
       content: payload.content,
       dateOfPub: payload.dateOfPub,
-      author: payload.author,
+      author: getters.user.id,
       keywords: payload.keywords
     }
-    
-    commit('CREATE_POST', post)
-  },
-  signUp({commit}, payload) {
-    const user = {
-      email: payload.email,
-      password: payload.password,
-      name: payload.name,
-      dateOfReg: payload.dateOfReg,
-      id: this.id, //TODO: нужен динамический id
-      postId: this.postId
-    }
 
-    commit('SIGN_USER_UP', user)
+    firebase.database().ref('articles').push(post)
+      .then(data => {
+        const key = data.key
+        commit('CREATE_POST', {
+          ...post,
+          id: key
+        })
+      }).catch(err => console.log(err))
   },
-  signIn({commit}, payload) {
-    const user = {
-      email: payload.email,
-      password: payload.password,
-      name: payload.name,
-    }
+  signUserOut({ commit }) {
+    firebase.auth().signOut()
 
-    commit('SIGN_USER_IN', user)
+    commit('SET_USER', null)
   },
-  signOut({commit}, payload) {
-    commit('SIGN_USER_OUT', payload)
-  }
+  signUserUp({ commit }, payload) {
+    firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+      .then(user => {
+        commit('SET_USER', {
+          id: user.uid,
+          email: payload.email,
+        })
+      })
+      .catch(err => console.log(err))
+  },
+  signUserIn({ commit }, payload) {
+    firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+      .then(user => {
+        commit('SET_USER', {
+          id: user.uid,
+          email: payload.email,
+        })
+      })
+      .catch(err => console.log(err))
+  },
+  autoSignIn({ commit }, payload) {
+    commit('SET_USER', {
+      id: payload.uid,
+      email: payload.email,
+    })
+  },
 }

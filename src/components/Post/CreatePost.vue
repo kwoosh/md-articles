@@ -43,17 +43,19 @@ class CreatePost extends Vue {
   //methods
   onCreatePost(e) {
     const postData = {
-      id: this.$store.state.posts.length + 1,
       title: this.title,
       content: this.content,
       dateOfPub: this.dateOfPub,
-      keywords: this.keywords
+      keywords: this.keywords,
     }
 
     this.$store.dispatch('createPost', postData)
-    this.$router.push('/posts')
+    this.$router.push('/')
   }
   // computed
+  get user() {
+    return this.$store.getters.user
+  }
   get keywords() {
     return this.kw.split(',')
   }

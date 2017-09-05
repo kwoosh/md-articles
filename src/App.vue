@@ -31,12 +31,12 @@ class App extends Vue {
 export default App
 </script>
 <style lang='stylus'>
-  .post-card {
-    margin: 30px
+  body {
+    background: #31D7E1
   }
 
-  #app {
-    background: url(assets/bg.png)
-  }
+  $_cyan = #C1F4FE
+  $_dark_main = #2B2E3B
+  $_dark_header = #2F3241
 </style>
 

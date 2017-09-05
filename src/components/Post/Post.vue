@@ -1,16 +1,15 @@
 <template lang='pug'>
   div 
     b-card(header-tag='header'
-      footer='Card Footer'
-      footer-tag='footer'
-      class='post-card')
+      class='card'
+      bg-variant='dark')
       div(slot='header' class='flex-el') 
-        div
-          b-button(variant='link' to='/users') {{ post.author }}
+        div(class='')
+          b-button(variant='link' to='/users' class='link') {{ post.author }}
           | {{ post.dateOfPub }}
         div
           span(v-for='(keyword, i) in post.keywords' :key='i') 
-            b-button(variant='link' :to='"/filtered/" + keyword') {{ keyword }}
+            b-button(variant='link' :to='"/filtered/" + keyword' class='link') {{ keyword }}
       div( v-html='postContent')
       
 </template>
@@ -38,6 +37,10 @@ export default Post
 </script>
 
 <style lang='stylus' scoped>
+  .link {
+    color: #FFC107
+  }
+
   .flex-el {
     display: flex
     justify-content: space-between
@@ -46,5 +49,10 @@ export default Post
 
   span {
     margin: 0 7px
+  }
+
+  .card {
+    margin: 30px 40px
+    color: #fff
   }
 </style>

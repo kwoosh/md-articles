@@ -1,13 +1,11 @@
 <template lang='pug'>
-  b-navbar(toggleable='md' type='dark' class='blue')
+  b-navbar(toggleable='md' type='dark' variant='dark' class='nav')
 
     b-nav-toggle(target='nav_collapse')
     
     b-navbar-brand(to='/') MarkdownBlog
     b-collapse(is-nav id='nav_collapse')
       b-nav(is-nav-bar)
-        b-nav-item(to='/posts') Публикации
-        b-nav-item(to='/users') Пользователи
 
       b-nav(is-nav-bar class='ml-auto')
         b-button.b(variant='outline-warning' to='/new' v-if='user') Написать
@@ -31,18 +29,19 @@ class NavBar extends Vue {
   }
   //methods
   onSignout(e) {
-    this.$store.dispatch('signOut', null)
+    this.$store.dispatch('signUserOut')
   }
 }
 
 export default NavBar
 </script>
 <style lang='stylus' scoped>
+
   .b {
     margin: 0 10px    
   }
 
   .blue {
-    background-color: #2FA7E3
+    background-color: #555
   }
 </style>

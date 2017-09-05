@@ -1,14 +1,6 @@
 <template lang='pug'>
   b-card(title='Регистрация' class='cont')
     b-form(@submit='onSignup')
-      b-form-group(id='name'
-        label='Ваше имя:' 
-        label-for='nameInput'
-        description='То имя что вы выберете, будет видно остальным пользователям.')
-        b-form-input(id='nameInput'
-          type='text' 
-          v-model.trim='form.name' 
-          required) 
 
       b-form-group(id='email'
         label='Ваш email:' 
@@ -54,7 +46,6 @@ class Signup extends Vue {
   //data
   form = {
     email: '',
-    name: '',
     password: '',
     confirmPassword: ''
   }
@@ -81,13 +72,10 @@ class Signup extends Vue {
     const user = { 
       email: this.form.email,
       password: this.form.password,
-      name: this.form.name,
       dateOfReg: moment().format('LLLL'),
-      postId: [], 
-      id: this.$store.state.users.length + 1
     }
 
-    this.$store.dispatch('signUp', user)
+    this.$store.dispatch('signUserUp', user)
     this.$router.push('/')
   }
 }

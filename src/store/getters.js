@@ -13,5 +13,8 @@ export default {
   },
   authMsg(state) {
     return state.authMsg
+  },
+  loading(state) {
+    return state.loading
   }
 }

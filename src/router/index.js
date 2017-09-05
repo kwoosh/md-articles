@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import auth from './auth'
 
-import Home from '@/components/Home'
 import Posts from '@/components/Post/Posts'
 import Post from '@/components/Post/Post'
 import CreatePost from '@/components/Post/CreatePost'
@@ -14,12 +14,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/posts',
-      name: 'Posts',
+      name: 'Home and posts page',
       component: Posts
     },
     {
@@ -31,7 +26,8 @@ export default new Router({
     {
       path: '/new',
       name: 'New post',
-      component: CreatePost
+      component: CreatePost,
+      beforeEnter: auth
     },
     {
       path: '/signup',
