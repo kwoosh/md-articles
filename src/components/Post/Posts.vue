@@ -10,6 +10,11 @@
         class='write-btn'
         to='/new') Написать  
 
+    b-pagination(align='center' 
+      :total-rows='posts.length' 
+      v-model='currentPage' 
+      :per-page='1'
+      size='lg')
     pre-loader(v-if='isLoading')
     b-card(v-if='!isLoading'
       v-for='(post, i) in posts' 
@@ -37,6 +42,8 @@ import md from '../../assets/md.js'
 })
 
 class Posts extends Vue {
+  //data
+  currentPage = 1
   // computed
   get isLoading() {
     return this.$store.getters.loading
