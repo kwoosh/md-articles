@@ -43,7 +43,7 @@ export default {
           ...post,
           id: key
         })
-      }).catch(err => console.log(err))
+      }).catch(err => console.log(err, 'kksdf'))
   },
   signUserOut({ commit }) {
     firebase.auth().signOut()
@@ -51,24 +51,32 @@ export default {
     commit('SET_USER', null)
   },
   signUserUp({ commit }, payload) {
+    commit('CLEAR_ERROR')
+
     firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
       .then(user => {
         commit('SET_USER', {
           id: user.uid,
           email: payload.email,
         })
+      }).catch(err => {
+        commit('SET_ERROR', err)
+        console.log(err)
       })
-      .catch(err => console.log(err))
   },
   signUserIn({ commit }, payload) {
+    commit('CLEAR_ERROR')
+    
     firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
       .then(user => {
         commit('SET_USER', {
           id: user.uid,
           email: payload.email,
         })
+      }).catch(err => {
+        commit('SET_ERROR', err)
+        console.log(err)
       })
-      .catch(err => console.log(err))
   },
   autoSignIn({ commit }, payload) {
     commit('SET_USER', {

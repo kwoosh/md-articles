@@ -1,7 +1,6 @@
 <template lang='pug'>
   b-container
     b-card(header-tag='header'
-      bg-variant='info'
       class='cd')
       div(slot='header' class='flex-el') 
         div
@@ -16,7 +15,7 @@
 
 <script>
 import { Component, Vue } from 'vue-property-decorator'
-import marked from 'marked'
+import md from '../../assets/md.js'
 
 @Component({
   components: {}
@@ -28,7 +27,7 @@ class Post extends Vue {
     return this.$route.params.id
   }
   get postContent() {
-    return marked(this.post.content)
+    return md(this.post.content)
   }
   get post() {
     return this.$store.getters.loadedPost(this.id)

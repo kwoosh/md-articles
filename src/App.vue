@@ -31,5 +31,12 @@ export default App
 </script>
 <style lang='stylus'>
   @import "./assets/helpers.styl"
+
+  pre  {
+    padding: 10px
+    background: #F8F9FA
+    color: #BD4147
+    border-radius: 4px 
+  }
 </style>
 

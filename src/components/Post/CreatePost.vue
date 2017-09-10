@@ -34,7 +34,7 @@
 </template>
 <script>
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import marked from 'marked'
+import md from '../../assets/md.js'
 import moment from 'moment'
 
 moment.locale('ru')
@@ -78,7 +78,7 @@ class CreatePost extends Vue {
     return this.kw.split(',')
   }
   get cont() {
-    return marked(this.content)
+    return md(this.content)
   }
   get dateOfPub() {
     const arr = moment().format('LLLL').split(',')

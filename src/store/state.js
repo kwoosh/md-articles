@@ -1,5 +1,6 @@
 export default {
   posts: [],
   user: null,
-  loading: false
+  loading: false,
+  error: null
 }
