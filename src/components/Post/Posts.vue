@@ -8,16 +8,18 @@
       b-button(variant='warning' 
         size='lg' 
         class='write-btn'
-        to='/new') Написать  
-
-    b-pagination(align='center' 
-      :total-rows='posts.length' 
-      v-model='currentPage' 
-      :per-page='1'
-      size='lg')
+        to='/new') Написать
     pre-loader(v-if='isLoading')
+    
+    b-pagination(align='center' 
+      :total-rows='totalRows' 
+      v-model='currentPage' 
+      :per-page='perPage'
+      size='lg'
+      @change='loadCards')
+
     b-card(v-if='!isLoading'
-      v-for='(post, i) in posts' 
+      v-for='(post, i) in items' 
       :key='i'
       :title='post.title'
       header-tag='header'
@@ -43,7 +45,18 @@ import md from '../../assets/md.js'
 
 class Posts extends Vue {
   //data
+  items = []
+  perPage = 3
   currentPage = 1
+
+  loadCards(page) {
+    let end = page * 3
+    let begin = end - 3
+
+    const arr = this.posts.slice(begin, end)
+
+    this.items = arr
+  }
   // computed
   get isLoading() {
     return this.$store.getters.loading
@@ -51,8 +64,15 @@ class Posts extends Vue {
   get posts() {
     return this.$store.getters.allPosts
   }
+  get totalRows() {
+    return this.posts.length
+  }
   get sliceOfPost() {
     return this.$store.getters.slicesOfPosts.map(slice => md(slice))
+  }
+
+  beforeMount() {
+    this.loadCards(this.currentPage)
   }
 }
 
