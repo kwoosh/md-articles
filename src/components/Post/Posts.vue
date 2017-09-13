@@ -16,7 +16,7 @@
       v-model='currentPage' 
       :per-page='perPage'
       size='lg'
-      @change='loadCards')
+      @input='loadCards')
 
     b-card(v-if='!isLoading'
       v-for='(post, i) in items' 
