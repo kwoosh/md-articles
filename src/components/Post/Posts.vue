@@ -25,13 +25,12 @@
       header-tag='header'
       footer-tag='footer'
       class='cd')
-      div(v-html='sliceOfPost[i]' class='slice-article')
+      div(v-html='slices[i]' class='slice-article')
       div(slot='header') 
-        b-button(variant='link' to='/users' class='link') {{ post.author }}
-        | {{ post.dateOfPub }}
+        b-button(variant='link' class='link') {{ post.dateOfPub }}
       div(slot='footer')
           span(v-for='(keyword, i) in post.keywords' :key='i') 
-            b-button(variant='link' :to='"/filtered/" + keyword' class='link') {{ keyword }}
+            b-button(variant='link' class='link') {{ keyword }}
       b-button(variant='primary' :to='\'/post/\' + post.id') Читать дальше -->
 
 </template>
@@ -45,16 +44,21 @@ import md from '../../assets/md.js'
 
 class Posts extends Vue {
   //data
+  slices = []
   items = []
   perPage = 3
   currentPage = 1
-
+  //methods
   loadCards(page) {
     let end = page * 3
     let begin = end - 3
 
     const arr = this.posts.slice(begin, end)
 
+    const slices = arr.map(post => post.content.substr(0, 550) + '...')
+
+    //console.log(arr, slices)
+    this.slices = slices
     this.items = arr
   }
   // computed
@@ -67,10 +71,7 @@ class Posts extends Vue {
   get totalRows() {
     return this.posts.length
   }
-  get sliceOfPost() {
-    return this.$store.getters.slicesOfPosts.map(slice => md(slice))
-  }
-
+  //lifecycle hook
   beforeMount() {
     this.loadCards(this.currentPage)
   }
@@ -79,6 +80,7 @@ class Posts extends Vue {
 export default Posts
 </script>
 <style lang='stylus' scoped>
+
   .under-head {
     margin-bottom: 100px
     background: rgba(#ccc, 0)

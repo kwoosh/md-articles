@@ -4,8 +4,7 @@
       class='cd')
       div(slot='header' class='flex-el') 
         div
-          b-button(variant='link' to='/users' class='link') {{ post.author }}
-          | {{ post.dateOfPub }}
+          b-button(variant='link' class='link') {{ post.dateOfPub }}
         div
           span(v-for='(keyword, i) in post.keywords' :key='i') 
             b-button(variant='link' :to='"/filtered/" + keyword' class='link') {{ keyword }}
